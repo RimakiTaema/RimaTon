@@ -8,6 +8,7 @@ use dioxus::router::Routable;
 
 #[cfg(not(target_arch = "wasm32"))]
 use configuration::{config_path, check_file};
+use mainpage::MainPage;
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const MAIN_CSS: Asset = asset!("/assets/main.css");
@@ -31,11 +32,11 @@ fn main() {
     dioxus::launch(App);
 }
 
-#[derive(Clone, Debug, PartialEq, Routable)]
+#[derive(Routable, Clone)]
 #[rustfmt::skip]
 enum Route {
     #[route("/")]
-    mainpage::MainPage {},
+    MP {},
 }
 
 #[component]
@@ -47,3 +48,13 @@ fn App() -> Element {
         Router::<Route> {}
     }
 }
+
+#[component]
+fn MP() -> Element {
+    MainPage()
+}
+
+/* fn LoginP() -> Element {
+    
+}
+*/
